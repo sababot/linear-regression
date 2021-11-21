@@ -1,43 +1,27 @@
-#include "math.h"
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
 /*------------------- Variables -------------------*/
-const char* FILENAME = "test.csv";
-int MAX_ITERATION = 1000;
-float LEARNING_RATE = 0.1;
+double x[] = {1, 2, 3, 4, 5};
+double y[] = {1, 3, 3, 2, 5};
 
-/*-------------------- Weights --------------------*/
-class Wieghts
+vector<double> error; // store error values
+double devi; // calculate error on each stage (short for deviation
+double b0 = 0;
+double b1 = 0;
+double learningRate = 0.01;
+/*--------------------- Train ---------------------*/
+for (int i = 0; i < 20; i++) // there are 4 epochs and 5 values so 5 * 4 = 20
 {
-private:
-	int MAX_WEIGHTS;
-
-public:
-	float* values;
-	int number_weights;
-
-	Weights(){};
-
-	Weights(int number_predictor)
-	{
-		number_weights = number_predictor;
-		values = (float *) std::calloc(number_weights, sizeof(float));
-	};
-
-	void update(float **X, float *y, float *y_pred, float learning_rate, int length)
-	{
-		float multiplier = learning_rate/length;
-
-		// Update each weight
-		for (int i = 0; i < number_weights; i++)
-		{
-			float sum = (sum_residual(X, y, y_pred, i, length));
-			printf("Sum = %f\n", sum);
-			values[i] = values[i] - multiplier * sum;
-		}
-	}
+	int index = i % 5; // access index after each epoch
+	double p = b0 + b1 * x[index]; // calculate prediction
+	devi = p - y[index]; // calculate error
+	b0 = b0 - learningRate * devi; // update b0
+	b1 = b1 - learningRate * devi * x[index]; // update b1
+	cout << "B0 = " << b0 << " " << "B1 = " << b1 << " " << "error = " << devi << endl; // print values
+	error.push_back(devi); // store error values
 }
 
 int main()
