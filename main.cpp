@@ -37,14 +37,15 @@ int main()
 	}
 	
 	/*--------------------- Print ---------------------*/
-	sort(error.begin(),error.end(),custom_sort); // error values used to sort the data
-	cout<<"Optimal end values are: "<<"B0="<<b0<<" "<<"B1="<<b1<<" "<<"error="<<error[0]<<endl;
+	sort(error.begin(), error.end(), custom_sort); // error values used to sort the data
+	cout << "optimal end values are: "<< "B0 = "<< b0 << " " << "B1 = " << b1 << " " << "error = " << error[0] << endl;
+	cout << "y = " <<  b1 << "x + " << b0 << endl;
 
 	/*-------------------- Testing --------------------*/
-	cout<<"Enter a test x value: ";
+	cout << "enter a test x value: ";
 	double test;
-	cin>>test;
-	double pred=b0+b1*test;
-	cout<<endl;
-	cout<<"\nThe value predicted by the model = "<< pred << endl;
+	cin >> test;
+	double pred = b0 + b1 * test;
+	cout << endl;
+	cout << "the value predicted by the model = " << pred << endl;
 }
